@@ -14,7 +14,7 @@
                                 <div class="col-3 item" v-for="(product, index) in dataList.data" :key="index">
                                     <div class="thumb-wrapper">
                                         <div class="img-box">
-                                            <img src="https://images.kogan.com/image/fetch/s--4uUL-TgJ--/b_white,c_pad,f_auto,h_400,q_auto:good,w_600/https://assets.kogan.com/files/product/HKI/20170324_New_iPad/KHIPADAIR332WGRY_1.jpg" class="img-responsive img-fluid" alt="">
+                                            <img :src="getImage(product.image_url)" class="img-responsive img-fluid" alt="">
                                         </div>
                                         <div class="thumb-content">
                                             <h4>{{product.title}}</h4>
