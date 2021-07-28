@@ -6,6 +6,14 @@ export default {
         }
     },
     methods: {
+        getGeneralData: function ($array) {
+            const _this = this;
+            _this.axios.post(_this.urlGenerate('api/general'), $array).then(response => {
+                _this.$store.commit('requiredData', response.data.result)
+            }).catch(function (error) {
+                _this.$toastr('error', 'Whoops..!! something went wrong', 'Error');
+            });
+        },
         getDataList: function (page = 1) {
             const _this = this;
             var data_params = Object.assign(this.filter, {per_page: 20, page: page});
@@ -25,7 +33,24 @@ export default {
                 _this.$toastr('error', retData.message, 'Error');
             });
         },
+        onFileSelect(event, name){
+            const _this = this;
+            var formData = new FormData();
+            var imagefile = event.target.files[0];
+            formData.append("image", imagefile);
 
+            _this.axios.post(_this.urlGenerate('api/auth/image_upload'), formData).then(response => {
+                if (parseInt(response.data.status) === 2000) {
+                    var retData = response.data.result;
+                    _this.$set(_this.formObject, name, retData.path);
+                    _this.$set(_this.formObject, 'image_url', retData.image_url);
+                } else {
+                    _this.$toastr('error', response.data.message, 'Error');
+                }
+            }).catch(function (error) {
+                _this.$toastr('error', 'Something wrong', 'Error');
+            });
+        },
         submitForm: function (formData, model = true) {
             const _this = this;
             var URL,method;
@@ -38,8 +63,8 @@ export default {
             }
             this.$validator.validate().then(valid => {
                 if (valid) {
+                    this.$validator.errors.clear();
                     _this.$store.state.httpRequest = true;
-                    console.log(formData);
                     _this.axios({method: method, url: URL, data: formData}).then(function (response) {
                         var retData = response.data;
                         _this.$store.state.httpRequest = false;
@@ -64,12 +89,16 @@ export default {
                 }
             });
         },
-        editData: function (data, updateId, model = 'formModal') {
+        editData: function (data, updateId, model = 'formModal', callback = false) {
             const _this = this;
             _this.$store.commit('formObject', data);
             _this.$store.commit('updateId', updateId);
             _this.$store.commit('formType', 2);
             _this.openModal(model);
+
+            if (typeof callback == 'function'){
+                callback(data);
+            }
         },
         deleteInformation: function (index, ID, url = false, callDataList = true) {
             const _this = this;

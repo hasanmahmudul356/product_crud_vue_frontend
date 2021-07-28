@@ -38,11 +38,6 @@ export const mutations = {
         state.httpRequest = data;
     },
     requiredData(state, data) {
-        // if (typeof data == 'object') {
-        //     $.each(data, function (index, value) {
-        //         state.requiredData[index] = value;
-        //     });
-        //
-        // }
+        state.requiredData = data;
     },
 }

@@ -20,6 +20,9 @@ export const getters = {
     httpRequest(state) {
         return state.httpRequest;
     },
+    requiredData(state) {
+        return state.requiredData;
+    },
     user(state) {
         return state.currentUser !== null && state.currentUser !== undefined ? state.currentUser : {};
     },

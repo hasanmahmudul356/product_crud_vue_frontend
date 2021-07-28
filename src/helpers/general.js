@@ -13,12 +13,15 @@ export function initialize(store, router) {
     function goNext(to, from, next, requiresAuth, currentUser) {
         if (requiresAuth && !currentUser) {
             next('/');
-        } else if ((to.path == '/login' && currentUser)  || (to.path == '/registration' && currentUser)) {
+        } else if ((to.path == '/login' && currentUser)
+            || (to.path == '/registration' && currentUser)) {
             next({name:'dashboard'});
         } else {
             next();
         }
     }
+
+    axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
     axios.interceptors.response.use(function (response) {
         return response;

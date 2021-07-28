@@ -2,11 +2,18 @@ import Master from "./components/backend/layouts/Master";
 import categoryComponent from "./components/backend/categoryComponent";
 import LoginComponent from "./components/auth/LoginComponent";
 import productComponent from "./components/backend/productComponent";
+import HomeComponent from "./components/frontend/HomeComponent";
 
 const routes = [
     {
+        path: '/',
+        name: 'home',
+        meta: {dataUrl: 'api/products', pageTitle: 'General Store', requiresAuth : false},
+        component: HomeComponent,
+    },
+    {
         path: '/login',
-        name: 'api/login',
+        name: 'name',
         meta: {dataUrl: 'api/login', pageTitle: 'Admin Login', requiresAuth : false},
         component: LoginComponent,
     },

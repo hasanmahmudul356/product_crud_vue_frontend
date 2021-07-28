@@ -43,7 +43,7 @@
                         _this.assignLoginSession(response.data.result, function (assigned) {
                             if (assigned){
                                 _this.$toastr('success', 'Successfully Logged in', 'Success');
-                                _this.$router.push({name:'dashboard'})
+                                window.location = '/admin/dashboard'
                             }
                         });
                     }

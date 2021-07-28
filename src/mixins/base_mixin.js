@@ -140,6 +140,16 @@ export default {
             this.$store.commit('resetFilter', parameter);
             this.getDataList();
         },
+        clickImageInput : function (ID) {
+            $('#'+ID).click();
+        },
+        getImage : function (imagePath) {
+            if (imagePath !== undefined && imagePath !== ''){
+                return imagePath;
+            } else{
+                return require('../assets/images.png');
+            }
+        }
     },
     mounted() {
 
