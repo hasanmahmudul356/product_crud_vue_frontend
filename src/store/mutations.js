@@ -24,13 +24,6 @@ export const mutations = {
     Config(state, data) {
         state.Config = data;
     },
-    filter(state, data) {
-        if (typeof data == 'object') {
-            $.each(data, function (index, value) {
-                state.filter[index] = value;
-            });
-        }
-    },
     resetFilter(state, data) {
         state.filter = data;
     },

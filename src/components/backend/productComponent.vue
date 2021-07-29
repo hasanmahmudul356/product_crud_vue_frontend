@@ -18,6 +18,17 @@
         <div class="col-12">
             <div class="card mt-1">
                 <div class="card-body shadow" style="min-height: 80vh">
+                    <div class="row mb-2">
+                        <div class="col-3">
+                            <input type="text" class="form-control" v-model="filter.keyword" placeholder="Keyword">
+                        </div>
+                        <div class="col-3">
+                            <select class="form-control" v-model="filter.category_id">
+                                <option value="">Select</option>
+                                <option v-for="(item, index) in requiredData.category" :value="item.id">{{item.title}}</option>
+                            </select>
+                        </div>
+                    </div>
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
@@ -106,8 +117,18 @@
         name: "productComponent",
         mounted() {
             this.$set(this.formObject, 'category_id', '');
+            this.$set(this.filter, 'category_id', '');
+
             this.getDataList();
             this.getGeneralData(['category']);
+        },
+        watch : {
+            'filter' : {
+                deep: true,
+                handler(){
+                    this.getDataList();
+                }
+            }
         },
         computed : {
             imagePath : function () {

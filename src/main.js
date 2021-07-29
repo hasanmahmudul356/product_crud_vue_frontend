@@ -5,7 +5,7 @@ window.$ = jQuery;
 import 'bootstrap'
 
 import App from './App';
-import routes from './routes';
+import routes from './routes/index';
 import  './assets/css/custom.css'
 
 Vue.config.productionTip = false;

@@ -1,5 +1,5 @@
 import Cookies from "vue-cookies";
-import {ApiUrl} from "../helpers";
+import {ApiUrl} from "../config";
 
 export default {
     data() {
@@ -35,17 +35,8 @@ export default {
         dataList: function () {
             return this.$store.getters.dataList;
         },
-        configData: function () {
-            return this.$store.getters.Config;
-        },
-        modalTitle: function () {
-            return this.$store.getters.modalTitle
-        },
         updateId: function () {
             return this.$store.getters.updateId
-        },
-        filter: function () {
-            return this.$store.getters.filter
         },
         httpRequest: function () {
             return this.$store.getters.httpRequest

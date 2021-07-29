@@ -3,6 +3,7 @@ export default {
         return {
             formData: {},
             SelectFilter: {},
+            filter : {}
         }
     },
     methods: {
@@ -51,7 +52,7 @@ export default {
                 _this.$toastr('error', 'Something wrong', 'Error');
             });
         },
-        submitForm: function (formData, model = true) {
+        submitForm: function (formData, model = true, callback = false) {
             const _this = this;
             var URL,method;
             if (_this.formType === 2) {
@@ -69,11 +70,15 @@ export default {
                         var retData = response.data;
                         _this.$store.state.httpRequest = false;
                         if (parseInt(retData.status) === 2000) {
-                            _this.$store.state.currentFromModel = 1;
+                            if (typeof callback == 'function'){
+                                callback(retData.result);
+                            } else{
+                                _this.$store.state.currentFromModel = 1;
+                                _this.closeModal(model);
+                                _this.getDataList();
+                                _this.resetForm(formData);
+                            }
                             _this.$toastr('success', retData.message, 'Success');
-                            _this.closeModal(model);
-                            _this.getDataList();
-                            _this.resetForm(formData);
                         }
                         if (parseInt(retData.status) === 3000) {
                             _this.$toastr('warning', retData.message, 'Warning');

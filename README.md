@@ -1,21 +1,20 @@
-# frontend
+##  Backend installation
 
-> A Vue.js project
+##### Following steps need to follow to run this project:
 
-## Build Setup
+- Download repository from Git
+- Switch to git folder that download from git
+- branch name "master"
+- Run backend Application and Set backend ApiUrl to "src/config.js"
 
-``` bash
-# install dependencies
-npm install
+####### COMMAND
 
-# serve with hot reload at localhost:8080
+```
+npm install 
+
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+###### open Frontend application url on browser. 
+

@@ -14,12 +14,16 @@
                                 <div class="col-3 item" v-for="(product, index) in dataList.data" :key="index">
                                     <div class="thumb-wrapper">
                                         <div class="img-box">
-                                            <img :src="getImage(product.image_url)" class="img-responsive img-fluid" alt="">
+                                            <router-link :to="{name:'product_details', params: {product_id: product.id}}">
+                                                <img :src="getImage(product.image_url)" class="img-responsive img-fluid" alt="">
+                                            </router-link>
                                         </div>
                                         <div class="thumb-content">
-                                            <h4>{{product.title}}</h4>
-                                            <p class="item-price"><strike>$400.00</strike> <span>$369.00</span></p>
-                                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                                            <router-link :to="{name:'product_details', params: {product_id: product.id}}">
+                                                <h4>{{product.title}}</h4>
+                                            </router-link>
+                                            <p class="item-price"> <span>${{product.price}}</span></p>
+                                            <router-link :to="{name:'product_details', params: {product_id: product.id}}" class="btn btn-primary">Add to Cart</router-link>
                                         </div>
                                     </div>
                                 </div>

@@ -11,6 +11,5 @@ export const state = {
     requiredData: [],
     formType: 1,
     updateId: '',
-    modalTitle:'',
     formObject : {},
 };
